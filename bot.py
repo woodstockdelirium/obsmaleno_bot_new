@@ -134,14 +134,14 @@ app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle))
 
-# Реєструємо webhook
-webhook_url = f"{SERVICE_URL}/webhook"
-app.bot.set_webhook(webhook_url)
-print(f"Webhook зареєстровано: {webhook_url}")
-
 # === Запуск вбудованого webhook‑сервера ===
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
+    webhook_url = f"{SERVICE_URL}/webhook"
+
+    app.bot.set_webhook(webhook_url)
+    print(f"Webhook зареєстровано: {webhook_url}")
+    
     app.run_webhook(
         listen="0.0.0.0",
         port=port,

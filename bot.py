@@ -145,5 +145,5 @@ if __name__ == "__main__":
     app.run_webhook(
         listen="0.0.0.0",
         port=port,
-        path="/webhook",
+        webhook_url=webhook_url
     )
